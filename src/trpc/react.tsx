@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { loggerLink, unstable_httpBatchStreamLink } from "@trpc/client";
 import { createTRPCReact } from "@trpc/react-query";
 import { useState } from "react";
+import { Toaster } from "react-hot-toast";
 
 import { type AppRouter } from "~/server/api/root";
 import { getUrl, transformer } from "./shared";
@@ -44,6 +45,7 @@ export function TRPCReactProvider(props: { children: React.ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
       <api.Provider client={trpcClient} queryClient={queryClient}>
+        <Toaster position="bottom-center" />
         {props.children}
       </api.Provider>
     </QueryClientProvider>
